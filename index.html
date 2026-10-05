@@ -21,21 +21,49 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
 
-/* TOP BAR */
+/* ═══ LOGIN SCREEN ═══ */
+#loginScreen{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+#loginScreen::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.15),transparent 45%),radial-gradient(circle at 80% 80%,rgba(59,130,246,.12),transparent 45%);pointer-events:none}
+.login-box{width:100%;max-width:400px;position:relative;z-index:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 28px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.login-logo{display:flex;align-items:center;justify-content:center;gap:10px;font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:8px}
+.login-logo .mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
+.login-logo .lite{color:var(--muted);font-weight:500}
+.login-sub{text-align:center;color:var(--muted);font-size:13.5px;margin-bottom:28px;line-height:1.5}
+.login-field{margin-bottom:14px}
+.login-field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
+.login-field input{width:100%;background:#0a0e17;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--txt);font-size:14.5px;font-family:inherit;outline:none;transition:.2s}
+.login-field input:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(34,197,94,.15)}
+.login-field input::placeholder{color:#4a5568}
+.login-btn{width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;transition:.2s;margin-top:8px;box-shadow:0 8px 24px rgba(34,197,94,.3)}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(34,197,94,.4)}
+.login-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.login-foot{text-align:center;font-size:12.5px;color:var(--muted);margin-top:20px}
+.login-foot a{color:var(--acc);text-decoration:none;font-weight:700;cursor:pointer}
+.login-foot a:hover{text-decoration:underline}
+.login-err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;padding:10px 14px;border-radius:10px;font-size:12.5px;margin-bottom:14px;display:none}
+.login-err.show{display:block}
+.login-demo{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#93c5fd;padding:10px 14px;border-radius:10px;font-size:12px;margin-bottom:14px;text-align:center;line-height:1.5}
+
+/* ═══ TOP BAR ═══ */
 .topbar{position:sticky;top:0;z-index:50;background:rgba(10,14,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 16px}
 .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px}
 .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:900;letter-spacing:-.5px;flex-shrink:0}
 .logo .mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff}
-.logo .name .lite{color:var(--muted);font-weight:500}
+.logo .lite{color:var(--muted);font-weight:500}
 .search{flex:1;max-width:400px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 14px;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
 .search input{background:transparent;border:none;outline:none;color:var(--txt);font-size:13.5px;font-family:inherit;width:100%}
 .search input::placeholder{color:var(--muted)}
 .topbar-actions{margin-left:auto;display:flex;gap:10px;align-items:center}
 .icon-btn{width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
 .icon-btn:hover{border-color:var(--acc)}
-.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;cursor:pointer}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;cursor:pointer;position:relative}
+.avatar::after{content:"";position:absolute;bottom:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--bg)}
+.avatar-menu{position:absolute;top:56px;right:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:180px;z-index:100;display:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.avatar-menu.show{display:block}
+.avatar-menu-item{padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px}
+.avatar-menu-item:hover{background:rgba(34,197,94,.1);color:var(--acc)}
 
-/* NAV */
+/* ═══ NAV ═══ */
 .nav{position:sticky;top:63px;z-index:49;background:rgba(10,14,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:0 16px}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:4px;overflow-x:auto}
 .nav-inner::-webkit-scrollbar{display:none}
@@ -43,7 +71,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 .nav-tab:hover{color:var(--txt)}
 .nav-tab.on{color:var(--acc);border-bottom-color:var(--acc)}
 
-/* MAIN */
+/* ═══ MAIN ═══ */
 .main{max-width:1200px;margin:0 auto;padding:20px 16px 80px}
 
 /* IHSG */
@@ -116,7 +144,6 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
 .nf-btn{padding:8px 16px;background:var(--card);border:1px solid var(--line);border-radius:100px;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.2s}
 .nf-btn:hover{border-color:var(--acc);color:var(--txt)}
 .nf-btn.on{background:var(--acc);border-color:var(--acc);color:#fff}
-
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .news-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
 .news-card:hover{border-color:var(--acc);transform:translateY(-2px)}
@@ -161,6 +188,7 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
   th,td{padding:12px}
   .stock-logo{width:32px;height:32px;font-size:12px}
   .news-grid{grid-template-columns:1fr}
+  .login-box{padding:28px 22px}
 }
 @media(max-width:480px){
   .ihsg{flex-direction:column;align-items:flex-start}
@@ -170,7 +198,39 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
 </head>
 <body>
 
-<!-- TOP BAR -->
+<!-- ═══ LOGIN SCREEN ═══ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="mark">📈</div>
+      <div>Invest<span class="lite">Hub</span></div>
+    </div>
+    <div class="login-sub">Masuk ke akun kamu untuk mulai berinvestasi</div>
+
+    <div class="login-demo">
+      📝 <b>Demo:</b> email <b>demo@investhub.id</b> &nbsp;|&nbsp; password <b>demo123</b>
+    </div>
+
+    <div class="login-err" id="loginErr"></div>
+
+    <div class="login-field">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="nama@email.com" autocomplete="email">
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">Masuk →</button>
+
+    <div class="login-foot">
+      Belum punya akun? <a onclick="alert('Fitur daftar belum tersedia')">Daftar di sini</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TOP BAR ═══ -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="logo">
@@ -183,12 +243,19 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
     </div>
     <div class="topbar-actions">
       <button class="icon-btn" title="Notifikasi">🔔</button>
-      <div class="avatar">S</div>
+      <div class="avatar" id="userAvatar" onclick="toggleAvatarMenu(event)">S</div>
     </div>
   </div>
 </div>
 
-<!-- NAV -->
+<!-- Avatar Menu -->
+<div class="avatar-menu" id="avatarMenu">
+  <div class="avatar-menu-item" onclick="alert('Profil user')">👤 Profil Saya</div>
+  <div class="avatar-menu-item" onclick="alert('Pengaturan')">⚙️ Pengaturan</div>
+  <div class="avatar-menu-item" onclick="logout()">🚪 Keluar</div>
+</div>
+
+<!-- ═══ NAV ═══ -->
 <div class="nav">
   <div class="nav-inner">
     <button class="nav-tab on" data-tab="market" onclick="switchTab('market')">Market</button>
@@ -198,7 +265,7 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- ═══ MAIN ═══ -->
 <div class="main">
 
   <!-- MARKET -->
@@ -342,6 +409,87 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
 </div>
 
 <script>
+/* ═══ LOGIN ═══ */
+function doLogin(){
+  const email = document.getElementById("loginEmail").value.trim();
+  const pass = document.getElementById("loginPass").value.trim();
+  const err = document.getElementById("loginErr");
+  const btn = document.getElementById("loginBtn");
+
+  err.classList.remove("show");
+
+  if (!email || !pass){
+    err.textContent = "Email dan password wajib diisi.";
+    err.classList.add("show");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Memverifikasi...";
+
+  setTimeout(() => {
+    if (email === "demo@investhub.id" && pass === "demo123"){
+      localStorage.setItem("investhub_user", JSON.stringify({ email, name: "Samm", loginAt: Date.now() }));
+      const screen = document.getElementById("loginScreen");
+      screen.style.transition = "opacity .4s";
+      screen.style.opacity = "0";
+      setTimeout(() => {
+        screen.remove();
+        updateAvatar();
+      }, 400);
+    } else {
+      err.textContent = "Email atau password salah. Coba lagi.";
+      err.classList.add("show");
+      btn.disabled = false;
+      btn.textContent = "Masuk →";
+    }
+  }, 800);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && document.getElementById("loginScreen")) doLogin();
+});
+
+function logout(){
+  localStorage.removeItem("investhub_user");
+  location.reload();
+}
+
+function updateAvatar(){
+  const saved = localStorage.getItem("investhub_user");
+  if (saved){
+    try {
+      const user = JSON.parse(saved);
+      const initial = (user.name || user.email || "S").charAt(0).toUpperCase();
+      const av = document.getElementById("userAvatar");
+      if (av) av.textContent = initial;
+    } catch(e){}
+  }
+}
+
+function toggleAvatarMenu(e){
+  e.stopPropagation();
+  document.getElementById("avatarMenu").classList.toggle("show");
+}
+document.addEventListener("click", () => {
+  const m = document.getElementById("avatarMenu");
+  if (m) m.classList.remove("show");
+});
+
+(function autoLogin(){
+  const saved = localStorage.getItem("investhub_user");
+  if (saved){
+    try {
+      const user = JSON.parse(saved);
+      const daysSince = (Date.now() - user.loginAt) / (1000 * 60 * 60 * 24);
+      if (daysSince < 30){
+        const screen = document.getElementById("loginScreen");
+        if (screen) screen.remove();
+      }
+    } catch(e){}
+  }
+})();
+
 /* ═══ DATA SAHAM ═══ */
 const STOCKS = [
   {code:"BBCA", name:"Bank Central Asia", price:9875, chg:+1.28, vol:"45,2 M", logo:"BC", color:"#3b82f6"},
@@ -374,121 +522,94 @@ const WATCHLIST = [
 
 /* ═══ NEWS GENERATOR ═══ */
 const NEWS_TEMPLATES = {
-  Market: {
-    icon: "📈",
-    titles: [
-      "IHSG Ditutup {arah} {pct}%, Sektor {sektor} Jadi Penopang",
-      "Bursa Asia Kompak {arah}, IHSG Ikut Terbawa {pct}%",
-      "IHSG Dibuka {arah} Pagi Ini, Investor Wait and See Data Inflasi",
-      "Aliran Dana Asing Catat Net {net} Rp {miliar} Miliar di Bursa",
-      "Volume Perdagangan {arah}, IHSG Bertahan di Level {level}",
-      "Sektor {sektor} Pimpin {arah} IHSG Hari Ini, Cek Sahamnya",
-      "IHSG Sentuh Level {level}, Analis Prediksi Lanjut {arah}"
-    ]
-  },
-  Ekonomi: {
-    icon: "🏦",
-    titles: [
-      "BI Pertahankan Suku Bunga Acuan di {rate}% untuk Jaga Stabilitas Rupiah",
-      "Nilai Tukar Rupiah Menguat ke Rp {kurs} per Dolar AS",
-      "Pemerintah Targetkan Pertumbuhan Ekonomi {rate}% Tahun Depan",
-      "Cadangan Devisa Naik Jadi US$ {miliar} Miliar, Tertinggi dalam {bulan} Bulan",
-      "Defisit Anggaran Capai {pct}% dari PDB, Masih dalam Batas Aman",
-      "Surplus Neraca Dagang Capai US$ {miliar} Miliar di Bulan Ini",
-      "PMI Manufaktur Indonesia di Level {level}, Sinyal Ekspansi Berlanjut"
-    ]
-  },
-  Inflasi: {
-    icon: "💵",
-    titles: [
-      "Inflasi Bulan Ini Tercatat {rate}%, {posisi} Ekspektasi Pasar",
-      "Inflasi Inti Stabil di {rate}%, BI Sebut Terkendali",
-      "Harga Pangan Naik, Inflasi Bulanan Capai {rate}%",
-      "Inflasi Year-on-Year di {rate}%, Masih dalam Target Pemerintah",
-      "Kelompok Transportasi Jadi Penyumbang Inflasi Terbesar Bulan Ini",
-      "Inflasi Volatile Food Sentuh {rate}%, Pemerintah Intervensi Pasar",
-      "Bank Indonesia Proyeksi Inflasi Akhir Tahun di Kisaran {rate}%",
-      "Harga Beras Naik, Inflasi Pangan Bergejolak Capai {rate}%"
-    ]
-  },
-  Saham: {
-    icon: "💹",
-    titles: [
-      "{kode} Cetak Laba Bersih Rp {triliun} T di Kuartal {kuartal}, Naik {pct}% YoY",
-      "{kode} Umumkan Dividen Rp {dividen} per Saham, Yield {rate}%",
-      "Saham {kode} Melonjak {pct}% Usai Rilis Laporan Keuangan",
-      "{kode} Akuisisi Perusahaan {sektor} Senilai Rp {triliun} T",
-      "Analis Naikkan Target Harga {kode} ke Rp {target}, Rekomendasi Buy",
-      "Asing Net Buy Saham {kode} Rp {miliar} Miliar Hari Ini",
-      "{kode} Bagikan Dividen Interim, Catat Yield {rate}%"
-    ]
-  },
-  Komoditas: {
-    icon: "⛏️",
-    titles: [
-      "Harga {komoditas} Global {arah}, Saham Tambang Kompak {arah}",
-      "Produksi {komoditas} Naik {pct}%, Harga Diprediksi Terkoreksi",
-      "Permintaan {komoditas} dari China Meningkat, Harga Sentuh Level Tertinggi",
-      "Ekspor {komoditas} Indonesia Naik {pct}% di Kuartal Ini",
-      "Harga {komoditas} Berpotensi Naik ke US$ {harga} per Ton",
-      "Stok {komoditas} Global Menipis, Harga Diprediksi Lanjut {arah}"
-    ]
-  },
-  Teknologi: {
-    icon: "🚀",
-    titles: [
-      "{kode} Umumkan Restrukturisasi Bisnis, Fokus ke Layanan {sektor}",
-      "Startup {sektor} Raih Pendanaan Seri {seri} Senilai US$ {miliar} Juta",
-      "{kode} Luncurkan Produk Baru, Targetkan Pertumbuhan {pct}%",
-      "Investor Asing Minati Sektor Teknologi, Dana Masuk Rp {triliun} T",
-      "{kode} Kerjasama dengan Perusahaan Global untuk Ekspansi {sektor}",
-      "Adopsi AI di Sektor {sektor} Meningkat {pct}%, Investor Melirik"
-    ]
-  },
-  Global: {
-    icon: "🌏",
-    titles: [
-      "The Fed Sinyalkan {aksi} Suku Bunga, Pasar Asia Merespons {arah}",
-      "Ekonomi China Tumbuh {rate}%, Lebih {posisi} dari Ekspektasi",
-      "Harga Minyak Dunia {arah} Usai Keputusan OPEC+",
-      "Ketegangan Geopolitik Meningkat, Investor Beralih ke Aset Safe Haven",
-      "Bursa Wall Street {arah}, Sektor {sektor} Pimpin Penguatan",
-      "Inflasi AS Tercatat {rate}%, Pasar Prediksi The Fed {aksi} Bunga"
-    ]
-  },
-  Politik: {
-    icon: "🏛️",
-    titles: [
-      "Pemerintah Rilis Paket Stimulus Rp {triliun} T untuk Dorong Ekonomi",
-      "DPR Bahas RUU {sektor}, Investor Cermati Dampaknya ke Pasar",
-      "Presiden Umumkan Reformasi {sektor}, Saham Terkait Merespons {arah}",
-      "Kementerian {sektor} Targetkan Investasi Rp {triliun} T Tahun Ini",
-      "Regulasi Baru Sektor {sektor} Terbit, Pasar Menanti Detail Teknis",
-      "Kerjasama Dagang dengan {negara} Diteken, Ekspor Diprediksi Naik {pct}%"
-    ]
-  }
+  Market: {icon:"📈", titles:[
+    "IHSG Ditutup {arah} {pct}%, Sektor {sektor} Jadi Penopang",
+    "Bursa Asia Kompak {arah}, IHSG Ikut Terbawa {pct}%",
+    "IHSG Dibuka {arah} Pagi Ini, Investor Wait and See Data Inflasi",
+    "Aliran Dana Asing Catat Net {net} Rp {miliar} Miliar di Bursa",
+    "Volume Perdagangan {arah}, IHSG Bertahan di Level {level}",
+    "Sektor {sektor} Pimpin {arah} IHSG Hari Ini, Cek Sahamnya",
+    "IHSG Sentuh Level {level}, Analis Prediksi Lanjut {arah}"
+  ]},
+  Ekonomi: {icon:"🏦", titles:[
+    "BI Pertahankan Suku Bunga Acuan di {rate}% untuk Jaga Stabilitas Rupiah",
+    "Nilai Tukar Rupiah Menguat ke Rp {kurs} per Dolar AS",
+    "Pemerintah Targetkan Pertumbuhan Ekonomi {rate}% Tahun Depan",
+    "Cadangan Devisa Naik Jadi US$ {miliar} Miliar, Tertinggi dalam {bulan} Bulan",
+    "Defisit Anggaran Capai {pct}% dari PDB, Masih dalam Batas Aman",
+    "Surplus Neraca Dagang Capai US$ {miliar} Miliar di Bulan Ini",
+    "PMI Manufaktur Indonesia di Level {level}, Sinyal Ekspansi Berlanjut"
+  ]},
+  Inflasi: {icon:"💵", titles:[
+    "Inflasi Bulan Ini Tercatat {rate}%, {posisi} Ekspektasi Pasar",
+    "Inflasi Inti Stabil di {rate}%, BI Sebut Terkendali",
+    "Harga Pangan Naik, Inflasi Bulanan Capai {rate}%",
+    "Inflasi Year-on-Year di {rate}%, Masih dalam Target Pemerintah",
+    "Kelompok Transportasi Jadi Penyumbang Inflasi Terbesar Bulan Ini",
+    "Inflasi Volatile Food Sentuh {rate}%, Pemerintah Intervensi Pasar",
+    "Bank Indonesia Proyeksi Inflasi Akhir Tahun di Kisaran {rate}%",
+    "Harga Beras Naik, Inflasi Pangan Bergejolak Capai {rate}%"
+  ]},
+  Saham: {icon:"💹", titles:[
+    "{kode} Cetak Laba Bersih Rp {triliun} T di Kuartal {kuartal}, Naik {pct}% YoY",
+    "{kode} Umumkan Dividen Rp {dividen} per Saham, Yield {rate}%",
+    "Saham {kode} Melonjak {pct}% Usai Rilis Laporan Keuangan",
+    "{kode} Akuisisi Perusahaan {sektor} Senilai Rp {triliun} T",
+    "Analis Naikkan Target Harga {kode} ke Rp {target}, Rekomendasi Buy",
+    "Asing Net Buy Saham {kode} Rp {miliar} Miliar Hari Ini",
+    "{kode} Bagikan Dividen Interim, Catat Yield {rate}%"
+  ]},
+  Komoditas: {icon:"⛏️", titles:[
+    "Harga {komoditas} Global {arah}, Saham Tambang Kompak {arah}",
+    "Produksi {komoditas} Naik {pct}%, Harga Diprediksi Terkoreksi",
+    "Permintaan {komoditas} dari China Meningkat, Harga Sentuh Level Tertinggi",
+    "Ekspor {komoditas} Indonesia Naik {pct}% di Kuartal Ini",
+    "Harga {komoditas} Berpotensi Naik ke US$ {harga} per Ton",
+    "Stok {komoditas} Global Menipis, Harga Diprediksi Lanjut {arah}"
+  ]},
+  Teknologi: {icon:"🚀", titles:[
+    "{kode} Umumkan Restrukturisasi Bisnis, Fokus ke Layanan {sektor}",
+    "Startup {sektor} Raih Pendanaan Seri {seri} Senilai US$ {miliar} Juta",
+    "{kode} Luncurkan Produk Baru, Targetkan Pertumbuhan {pct}%",
+    "Investor Asing Minati Sektor Teknologi, Dana Masuk Rp {triliun} T",
+    "{kode} Kerjasama dengan Perusahaan Global untuk Ekspansi {sektor}",
+    "Adopsi AI di Sektor {sektor} Meningkat {pct}%, Investor Melirik"
+  ]},
+  Global: {icon:"🌏", titles:[
+    "The Fed Sinyalkan {aksi} Suku Bunga, Pasar Asia Merespons {arah}",
+    "Ekonomi China Tumbuh {rate}%, Lebih {posisi} dari Ekspektasi",
+    "Harga Minyak Dunia {arah} Usai Keputusan OPEC+",
+    "Ketegangan Geopolitik Meningkat, Investor Beralih ke Aset Safe Haven",
+    "Bursa Wall Street {arah}, Sektor {sektor} Pimpin Penguatan",
+    "Inflasi AS Tercatat {rate}%, Pasar Prediksi The Fed {aksi} Bunga"
+  ]},
+  Politik: {icon:"🏛️", titles:[
+    "Pemerintah Rilis Paket Stimulus Rp {triliun} T untuk Dorong Ekonomi",
+    "DPR Bahas RUU {sektor}, Investor Cermati Dampaknya ke Pasar",
+    "Presiden Umumkan Reformasi {sektor}, Saham Terkait Merespons {arah}",
+    "Kementerian {sektor} Targetkan Investasi Rp {triliun} T Tahun Ini",
+    "Regulasi Baru Sektor {sektor} Terbit, Pasar Menanti Detail Teknis",
+    "Kerjasama Dagang dengan {negara} Diteken, Ekspor Diprediksi Naik {pct}%"
+  ]}
 };
 
 const FILLERS = {
-  arah: ["menguat", "melemah", "naik", "turun", "rebound", "terkoreksi", "stabil"],
-  sektor: ["Perbankan", "Energi", "Tambang", "Teknologi", "Konsumer", "Properti", "Infrastruktur", "Kesehatan", "Industri", "Pertanian"],
-  komoditas: ["Batu Bara", "Nikel", "CPO", "Emas", "Tembaga", "Timah", "Karet", "Kakao"],
-  kode: ["BBCA", "BBRI", "TLKM", "ASII", "GOTO", "ANTM", "ADRO", "ICBP", "UNVR", "BMRI", "INDF", "SMGR", "KLBF"],
-  kuartal: ["I", "II", "III", "IV"],
-  bulan: ["3", "6", "9", "12"],
-  seri: ["A", "B", "C", "D"],
-  aksi: ["Pemangkasan", "Kenaikan", "Pertahankan", "Sinyal"],
-  posisi: ["Di Bawah", "Di Atas", "Sesuai", "Melebihi", "Lebih Rendah dari"],
-  net: ["Buy", "Sell"],
-  negara: ["China", "Jepang", "Amerika Serikat", "India", "Korea Selatan", "Australia", "Singapura"],
-  waktu: ["2 jam lalu", "3 jam lalu", "5 jam lalu", "8 jam lalu", "12 jam lalu", "1 hari lalu", "1 hari lalu", "2 hari lalu"]
+  arah:["menguat","melemah","naik","turun","rebound","terkoreksi","stabil"],
+  sektor:["Perbankan","Energi","Tambang","Teknologi","Konsumer","Properti","Infrastruktur","Kesehatan","Industri","Pertanian"],
+  komoditas:["Batu Bara","Nikel","CPO","Emas","Tembaga","Timah","Karet","Kakao"],
+  kode:["BBCA","BBRI","TLKM","ASII","GOTO","ANTM","ADRO","ICBP","UNVR","BMRI","INDF","SMGR","KLBF"],
+  kuartal:["I","II","III","IV"],
+  bulan:["3","6","9","12"],
+  seri:["A","B","C","D"],
+  aksi:["Pemangkasan","Kenaikan","Pertahankan","Sinyal"],
+  posisi:["Di Bawah","Di Atas","Sesuai","Melebihi","Lebih Rendah dari"],
+  net:["Buy","Sell"],
+  negara:["China","Jepang","Amerika Serikat","India","Korea Selatan","Australia","Singapura"],
+  waktu:["2 jam lalu","3 jam lalu","5 jam lalu","8 jam lalu","12 jam lalu","1 hari lalu","1 hari lalu","2 hari lalu"]
 };
 
 function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
-function num(min, max, dec=0){
-  const n = Math.random() * (max - min) + min;
-  return dec ? n.toFixed(dec).replace(".", ",") : Math.floor(n);
-}
+function num(min, max, dec=0){ const n = Math.random() * (max - min) + min; return dec ? n.toFixed(dec).replace(".", ",") : Math.floor(n); }
 
 function fillTemplate(tmpl){
   return tmpl
@@ -521,16 +642,14 @@ function genNews(){
   const categories = Object.keys(NEWS_TEMPLATES);
   const news = [];
   const used = new Set();
-
   let attempts = 0;
-  while (news.length < 12 && attempts < 200) {
+  while (news.length < 12 && attempts < 200){
     attempts++;
     const cat = pick(categories);
     const tmpl = pick(NEWS_TEMPLATES[cat].titles);
     const key = cat + "|" + tmpl;
     if (used.has(key)) continue;
     used.add(key);
-
     news.push({
       tag: cat,
       title: fillTemplate(tmpl),
@@ -538,27 +657,19 @@ function genNews(){
       icon: NEWS_TEMPLATES[cat].icon
     });
   }
-
   news.sort((a, b) => FILLERS.waktu.indexOf(a.time) - FILLERS.waktu.indexOf(b.time));
   return news;
 }
 
-function renderNews(){
-  ALL_NEWS = genNews();
-  renderNewsGrid();
-}
+function renderNews(){ ALL_NEWS = genNews(); renderNewsGrid(); }
 
 function renderNewsGrid(){
   const grid = document.getElementById("newsGrid");
-  const filtered = CURRENT_FILTER === "all"
-    ? ALL_NEWS
-    : ALL_NEWS.filter(n => n.tag === CURRENT_FILTER);
-
+  const filtered = CURRENT_FILTER === "all" ? ALL_NEWS : ALL_NEWS.filter(n => n.tag === CURRENT_FILTER);
   if (!filtered.length){
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-size:14px">Belum ada berita di kategori ini.</div>`;
     return;
   }
-
   grid.innerHTML = filtered.map(n => `
     <div class="news-card" onclick="alert('${n.title.replace(/'/g,"\\'")}')">
       <div class="news-thumb">${n.icon}</div>
@@ -614,8 +725,7 @@ function renderMovers(){
   const gainers = sorted.slice(0, 4);
   const losers = sorted.slice(-4).reverse();
 
-  const gEl = document.getElementById("gainers");
-  gEl.innerHTML = gainers.map(s => `
+  document.getElementById("gainers").innerHTML = gainers.map(s => `
     <div class="mover-item">
       <div>
         <div class="code">${s.code}</div>
@@ -625,8 +735,7 @@ function renderMovers(){
     </div>
   `).join("");
 
-  const lEl = document.getElementById("losers");
-  lEl.innerHTML = losers.map(s => `
+  document.getElementById("losers").innerHTML = losers.map(s => `
     <div class="mover-item">
       <div>
         <div class="code">${s.code}</div>
@@ -694,29 +803,21 @@ function renderWatch(){
 function drawChart(range){
   const svg = document.getElementById("mainChart");
   const W = 600, H = 180;
-
   const points = range === "1D" ? 24 : range === "1W" ? 7 : range === "1M" ? 30 : range === "3M" ? 60 : 120;
   const data = [];
   let base = 7100;
-  for (let i = 0; i < points; i++) {
-    base += (Math.random() - 0.45) * 40;
-    data.push(base);
-  }
+  for (let i = 0; i < points; i++){ base += (Math.random() - 0.45) * 40; data.push(base); }
   data[data.length - 1] = 7284.56;
-
   const min = Math.min(...data);
   const max = Math.max(...data);
   const rangeY = max - min || 1;
-
   const pts = data.map((v, i) => {
     const x = (i / (points - 1)) * W;
     const y = H - ((v - min) / rangeY) * (H - 20) - 10;
     return [x, y];
   });
-
   const linePath = pts.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`)).join(" ");
   const areaPath = linePath + ` L${W},${H} L0,${H} Z`;
-
   svg.innerHTML = `
     <defs>
       <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
@@ -733,18 +834,11 @@ function drawChart(range){
 function switchTab(tab){
   document.querySelectorAll(".tabs-content").forEach(el => el.classList.add("hidden"));
   document.getElementById("tab-" + tab).classList.remove("hidden");
-
-  document.querySelectorAll(".nav-tab").forEach(el => {
-    el.classList.toggle("on", el.dataset.tab === tab);
-  });
-  document.querySelectorAll(".bnav-item").forEach(el => {
-    el.classList.toggle("on", el.dataset.tab === tab);
-  });
-
+  document.querySelectorAll(".nav-tab").forEach(el => el.classList.toggle("on", el.dataset.tab === tab));
+  document.querySelectorAll(".bnav-item").forEach(el => el.classList.toggle("on", el.dataset.tab === tab));
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-/* ═══ RANGE ═══ */
 function setRange(range, btn){
   document.querySelectorAll(".ctab").forEach(b => b.classList.remove("on"));
   btn.classList.add("on");
@@ -758,12 +852,10 @@ renderPortfolio();
 renderWatch();
 renderNews();
 drawChart("1W");
+updateAvatar();
 
-/* Auto-refresh berita tiap 2 menit kalau tab berita aktif */
 setInterval(() => {
-  if (!document.getElementById("tab-news").classList.contains("hidden")) {
-    renderNews();
-  }
+  if (!document.getElementById("tab-news").classList.contains("hidden")) renderNews();
 }, 120000);
 </script>
 
