@@ -22,13 +22,17 @@
 body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
 
 /* ═══ LOGIN SCREEN ═══ */
-#loginScreen{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+#loginScreen{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto}
 #loginScreen::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.15),transparent 45%),radial-gradient(circle at 80% 80%,rgba(59,130,246,.12),transparent 45%);pointer-events:none}
-.login-box{width:100%;max-width:400px;position:relative;z-index:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 28px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.login-box{width:100%;max-width:400px;position:relative;z-index:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 28px;box-shadow:0 20px 60px rgba(0,0,0,.5);margin:auto}
 .login-logo{display:flex;align-items:center;justify-content:center;gap:10px;font-size:22px;font-weight:900;letter-spacing:-.5px;margin-bottom:8px}
 .login-logo .mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
 .login-logo .lite{color:var(--muted);font-weight:500}
-.login-sub{text-align:center;color:var(--muted);font-size:13.5px;margin-bottom:28px;line-height:1.5}
+.login-sub{text-align:center;color:var(--muted);font-size:13.5px;margin-bottom:24px;line-height:1.5}
+.login-tabs{display:flex;background:#0a0e17;border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:20px}
+.login-tab{flex:1;padding:10px;border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;border-radius:9px;transition:.2s}
+.login-tab.on{background:var(--card2);color:var(--txt)}
+.login-tab:hover:not(.on){color:var(--txt)}
 .login-field{margin-bottom:14px}
 .login-field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
 .login-field input{width:100%;background:#0a0e17;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--txt);font-size:14.5px;font-family:inherit;outline:none;transition:.2s}
@@ -40,8 +44,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 .login-foot{text-align:center;font-size:12.5px;color:var(--muted);margin-top:20px}
 .login-foot a{color:var(--acc);text-decoration:none;font-weight:700;cursor:pointer}
 .login-foot a:hover{text-decoration:underline}
-.login-err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;padding:10px 14px;border-radius:10px;font-size:12.5px;margin-bottom:14px;display:none}
+.login-err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;padding:10px 14px;border-radius:10px;font-size:12.5px;margin-bottom:14px;display:none;line-height:1.4}
 .login-err.show{display:block}
+.login-success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#86efac;padding:10px 14px;border-radius:10px;font-size:12.5px;margin-bottom:14px;display:none;line-height:1.4}
+.login-success.show{display:block}
 .login-demo{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#93c5fd;padding:10px 14px;border-radius:10px;font-size:12px;margin-bottom:14px;text-align:center;line-height:1.5}
 
 /* ═══ TOP BAR ═══ */
@@ -58,8 +64,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 .icon-btn:hover{border-color:var(--acc)}
 .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;cursor:pointer;position:relative}
 .avatar::after{content:"";position:absolute;bottom:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--bg)}
-.avatar-menu{position:absolute;top:56px;right:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:180px;z-index:100;display:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.avatar-menu{position:absolute;top:56px;right:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:200px;z-index:100;display:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .avatar-menu.show{display:block}
+.avatar-menu-head{padding:8px 14px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.avatar-menu-name{font-weight:800;font-size:13px}
+.avatar-menu-email{font-size:11px;color:var(--muted);margin-top:2px}
 .avatar-menu-item{padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px}
 .avatar-menu-item:hover{background:rgba(34,197,94,.1);color:var(--acc)}
 
@@ -198,34 +207,62 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
 </head>
 <body>
 
-<!-- ═══ LOGIN SCREEN ═══ -->
+<!-- ═══ LOGIN / REGISTER SCREEN ═══ -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">
       <div class="mark">📈</div>
       <div>Invest<span class="lite">Hub</span></div>
     </div>
-    <div class="login-sub">Masuk ke akun kamu untuk mulai berinvestasi</div>
+    <div class="login-sub" id="loginSub">Masuk ke akun kamu untuk mulai berinvestasi</div>
 
-    <div class="login-demo">
-      📝 <b>Demo:</b> email <b>demo@investhub.id</b> &nbsp;|&nbsp; password <b>demo123</b>
+    <div class="login-tabs">
+      <button class="login-tab on" id="tabMasuk" onclick="switchLoginTab('masuk')">Masuk</button>
+      <button class="login-tab" id="tabDaftar" onclick="switchLoginTab('daftar')">Daftar</button>
     </div>
 
     <div class="login-err" id="loginErr"></div>
+    <div class="login-success" id="loginSuccess"></div>
 
-    <div class="login-field">
-      <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="nama@email.com" autocomplete="email">
+    <!-- MASUK -->
+    <div id="formMasuk">
+      <div class="login-demo">
+        📝 <b>Demo:</b> email <b>demo@investhub.id</b> &nbsp;|&nbsp; password <b>demo123</b>
+      </div>
+      <div class="login-field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="nama@email.com" autocomplete="email">
+      </div>
+      <div class="login-field">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">Masuk →</button>
     </div>
-    <div class="login-field">
-      <label>Password</label>
-      <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+
+    <!-- DAFTAR -->
+    <div id="formDaftar" style="display:none">
+      <div class="login-field">
+        <label>Nama Lengkap</label>
+        <input type="text" id="regName" placeholder="Nama kamu" maxlength="30" autocomplete="name">
+      </div>
+      <div class="login-field">
+        <label>Email</label>
+        <input type="email" id="regEmail" placeholder="nama@email.com" autocomplete="email">
+      </div>
+      <div class="login-field">
+        <label>Password</label>
+        <input type="password" id="regPass" placeholder="Minimal 6 karakter" autocomplete="new-password">
+      </div>
+      <div class="login-field">
+        <label>Konfirmasi Password</label>
+        <input type="password" id="regPass2" placeholder="Ulangi password" autocomplete="new-password">
+      </div>
+      <button class="login-btn" id="regBtn" onclick="doRegister()">Daftar →</button>
     </div>
 
-    <button class="login-btn" id="loginBtn" onclick="doLogin()">Masuk →</button>
-
-    <div class="login-foot">
-      Belum punya akun? <a onclick="alert('Fitur daftar belum tersedia')">Daftar di sini</a>
+    <div class="login-foot" id="loginFoot">
+      Belum punya akun? <a onclick="switchLoginTab('daftar')">Daftar di sini</a>
     </div>
   </div>
 </div>
@@ -250,6 +287,10 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
 
 <!-- Avatar Menu -->
 <div class="avatar-menu" id="avatarMenu">
+  <div class="avatar-menu-head">
+    <div class="avatar-menu-name" id="menuName">User</div>
+    <div class="avatar-menu-email" id="menuEmail">user@email.com</div>
+  </div>
   <div class="avatar-menu-item" onclick="alert('Profil user')">👤 Profil Saya</div>
   <div class="avatar-menu-item" onclick="alert('Pengaturan')">⚙️ Pengaturan</div>
   <div class="avatar-menu-item" onclick="logout()">🚪 Keluar</div>
@@ -409,45 +450,91 @@ td{padding:14px 16px;font-size:13.5px;white-space:nowrap}
 </div>
 
 <script>
-/* ═══ LOGIN ═══ */
+/* ═══ LOGIN / REGISTER ═══ */
+(function initDemoAccount(){
+  const users = JSON.parse(localStorage.getItem("investhub_users") || "[]");
+  if (!users.find(u => u.email === "demo@investhub.id")){
+    users.push({ name:"Samm", email:"demo@investhub.id", password:"demo123", createdAt:Date.now() });
+    localStorage.setItem("investhub_users", JSON.stringify(users));
+  }
+})();
+
+function switchLoginTab(tab){
+  document.getElementById("loginErr").classList.remove("show");
+  document.getElementById("loginSuccess").classList.remove("show");
+  const isMasuk = tab === "masuk";
+  document.getElementById("tabMasuk").classList.toggle("on", isMasuk);
+  document.getElementById("tabDaftar").classList.toggle("on", !isMasuk);
+  document.getElementById("formMasuk").style.display = isMasuk ? "block" : "none";
+  document.getElementById("formDaftar").style.display = isMasuk ? "none" : "block";
+  document.getElementById("loginSub").textContent = isMasuk
+    ? "Masuk ke akun kamu untuk mulai berinvestasi"
+    : "Bikin akun baru, gratis, gak butuh verifikasi";
+  document.getElementById("loginFoot").innerHTML = isMasuk
+    ? 'Belum punya akun? <a onclick="switchLoginTab(\'daftar\')">Daftar di sini</a>'
+    : 'Udah punya akun? <a onclick="switchLoginTab(\'masuk\')">Masuk di sini</a>';
+}
+
 function doLogin(){
-  const email = document.getElementById("loginEmail").value.trim();
-  const pass = document.getElementById("loginPass").value.trim();
+  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+  const pass = document.getElementById("loginPass").value;
   const err = document.getElementById("loginErr");
   const btn = document.getElementById("loginBtn");
-
   err.classList.remove("show");
-
-  if (!email || !pass){
-    err.textContent = "Email dan password wajib diisi.";
-    err.classList.add("show");
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = "Memverifikasi...";
-
+  if (!email || !pass){ err.textContent="Email dan password wajib diisi."; err.classList.add("show"); return; }
+  btn.disabled = true; btn.textContent = "Memverifikasi...";
   setTimeout(() => {
-    if (email === "demo@investhub.id" && pass === "demo123"){
-      localStorage.setItem("investhub_user", JSON.stringify({ email, name: "Samm", loginAt: Date.now() }));
+    const users = JSON.parse(localStorage.getItem("investhub_users") || "[]");
+    const user = users.find(u => u.email === email && u.password === pass);
+    if (user){
+      localStorage.setItem("investhub_user", JSON.stringify({ email:user.email, name:user.name, loginAt:Date.now() }));
       const screen = document.getElementById("loginScreen");
-      screen.style.transition = "opacity .4s";
-      screen.style.opacity = "0";
-      setTimeout(() => {
-        screen.remove();
-        updateAvatar();
-      }, 400);
+      screen.style.transition = "opacity .4s"; screen.style.opacity = "0";
+      setTimeout(() => { screen.remove(); updateAvatar(); }, 400);
     } else {
-      err.textContent = "Email atau password salah. Coba lagi.";
-      err.classList.add("show");
-      btn.disabled = false;
-      btn.textContent = "Masuk →";
+      err.textContent="Email atau password salah. Coba lagi."; err.classList.add("show");
+      btn.disabled = false; btn.textContent = "Masuk →";
     }
-  }, 800);
+  }, 700);
+}
+
+function doRegister(){
+  const name = document.getElementById("regName").value.trim();
+  const email = document.getElementById("regEmail").value.trim().toLowerCase();
+  const pass = document.getElementById("regPass").value;
+  const pass2 = document.getElementById("regPass2").value;
+  const err = document.getElementById("loginErr");
+  const btn = document.getElementById("regBtn");
+  err.classList.remove("show");
+  if (!name || !email || !pass || !pass2){ err.textContent="Semua field wajib diisi."; err.classList.add("show"); return; }
+  if (name.length < 2){ err.textContent="Nama minimal 2 karakter."; err.classList.add("show"); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent="Format email gak valid."; err.classList.add("show"); return; }
+  if (pass.length < 6){ err.textContent="Password minimal 6 karakter."; err.classList.add("show"); return; }
+  if (pass !== pass2){ err.textContent="Password dan konfirmasi gak sama."; err.classList.add("show"); return; }
+  const users = JSON.parse(localStorage.getItem("investhub_users") || "[]");
+  if (users.find(u => u.email === email)){ err.textContent="Email ini udah terdaftar. Coba masuk aja."; err.classList.add("show"); return; }
+  btn.disabled = true; btn.textContent = "Mendaftarkan...";
+  setTimeout(() => {
+    users.push({ name, email, password:pass, createdAt:Date.now() });
+    localStorage.setItem("investhub_users", JSON.stringify(users));
+    localStorage.setItem("investhub_user", JSON.stringify({ email, name, loginAt:Date.now() }));
+    const success = document.getElementById("loginSuccess");
+    success.textContent = `Selamat datang, ${name}! Mengalihkan ke dashboard...`;
+    success.classList.add("show");
+    setTimeout(() => {
+      const screen = document.getElementById("loginScreen");
+      screen.style.transition = "opacity .4s"; screen.style.opacity = "0";
+      setTimeout(() => { screen.remove(); updateAvatar(); }, 400);
+    }, 900);
+  }, 700);
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && document.getElementById("loginScreen")) doLogin();
+  if (e.key === "Enter" && document.getElementById("loginScreen")){
+    const formDaftar = document.getElementById("formDaftar");
+    if (formDaftar.style.display === "none") doLogin();
+    else doRegister();
+  }
 });
 
 function logout(){
@@ -463,6 +550,10 @@ function updateAvatar(){
       const initial = (user.name || user.email || "S").charAt(0).toUpperCase();
       const av = document.getElementById("userAvatar");
       if (av) av.textContent = initial;
+      const nameEl = document.getElementById("menuName");
+      const emailEl = document.getElementById("menuEmail");
+      if (nameEl) nameEl.textContent = user.name;
+      if (emailEl) emailEl.textContent = user.email;
     } catch(e){}
   }
 }
@@ -650,12 +741,7 @@ function genNews(){
     const key = cat + "|" + tmpl;
     if (used.has(key)) continue;
     used.add(key);
-    news.push({
-      tag: cat,
-      title: fillTemplate(tmpl),
-      time: pick(FILLERS.waktu),
-      icon: NEWS_TEMPLATES[cat].icon
-    });
+    news.push({ tag:cat, title:fillTemplate(tmpl), time:pick(FILLERS.waktu), icon:NEWS_TEMPLATES[cat].icon });
   }
   news.sort((a, b) => FILLERS.waktu.indexOf(a.time) - FILLERS.waktu.indexOf(b.time));
   return news;
@@ -727,20 +813,14 @@ function renderMovers(){
 
   document.getElementById("gainers").innerHTML = gainers.map(s => `
     <div class="mover-item">
-      <div>
-        <div class="code">${s.code}</div>
-        <div class="name">${rp(s.price)}</div>
-      </div>
+      <div><div class="code">${s.code}</div><div class="name">${rp(s.price)}</div></div>
       <div class="chg up">${pct(s.chg)}</div>
     </div>
   `).join("");
 
   document.getElementById("losers").innerHTML = losers.map(s => `
     <div class="mover-item">
-      <div>
-        <div class="code">${s.code}</div>
-        <div class="name">${rp(s.price)}</div>
-      </div>
+      <div><div class="code">${s.code}</div><div class="name">${rp(s.price)}</div></div>
       <div class="chg down">${pct(s.chg)}</div>
     </div>
   `).join("");
